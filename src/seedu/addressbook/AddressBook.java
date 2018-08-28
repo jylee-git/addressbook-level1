@@ -121,6 +121,11 @@ public class AddressBook {
     private static final String COMMAND_DELETE_PARAMETER = "INDEX";
     private static final String COMMAND_DELETE_EXAMPLE = COMMAND_DELETE_WORD + " 1";
 
+    private static final String COMMAND_EDIT_WORD = "edit";
+    private static final String COMMAND_EDIT_DESC = "Edit a person's profile according to the exact name given.";
+    private static final String COMMAND_EDIT_PARAMETER = "EXACT NAME";
+    private static final String COMMAND_EDIT_EXAMPLE = COMMAND_EDIT_WORD + " jason";
+
     private static final String COMMAND_CLEAR_WORD = "clear";
     private static final String COMMAND_CLEAR_DESC = "Clears address book permanently.";
     private static final String COMMAND_CLEAR_EXAMPLE = COMMAND_CLEAR_WORD;
@@ -377,6 +382,8 @@ public class AddressBook {
             return executeListAllPersonsInAddressBook();
         case COMMAND_DELETE_WORD:
             return executeDeletePerson(commandArgs);
+        case COMMAND_EDIT_WORD:
+            return executeEditProfile();
         case COMMAND_CLEAR_WORD:
             return executeClearAddressBook();
         case COMMAND_HELP_WORD:
@@ -535,6 +542,16 @@ public class AddressBook {
      */
     private static int extractTargetIndexFromDeletePersonArgs(String rawArgs) {
         return Integer.parseInt(rawArgs.trim());
+    }
+
+    /**
+     * Finds person by exact name
+     *
+     * @return displays message whether the person is found (continue), or not found (return)
+     */
+    private static String executeEditProfile(){
+        showToUser("Editing something...? (STUB)");
+        return null;
     }
 
     /**
@@ -1086,6 +1103,7 @@ public class AddressBook {
                 + getUsageInfoForFindCommand() + LS
                 + getUsageInfoForViewCommand() + LS
                 + getUsageInfoForDeleteCommand() + LS
+                + getUsageInfoForEditCommand() + LS
                 + getUsageInfoForClearCommand() + LS
                 + getUsageInfoForExitCommand() + LS
                 + getUsageInfoForHelpCommand();
@@ -1110,6 +1128,13 @@ public class AddressBook {
         return String.format(MESSAGE_COMMAND_HELP, COMMAND_DELETE_WORD, COMMAND_DELETE_DESC) + LS
                 + String.format(MESSAGE_COMMAND_HELP_PARAMETERS, COMMAND_DELETE_PARAMETER) + LS
                 + String.format(MESSAGE_COMMAND_HELP_EXAMPLE, COMMAND_DELETE_EXAMPLE) + LS;
+    }
+
+    /** Returns the string for showing 'edit' command usage instruction */
+    private static String getUsageInfoForEditCommand(){
+        return String.format(MESSAGE_COMMAND_HELP, COMMAND_EDIT_WORD, COMMAND_EDIT_DESC) + LS
+                + String.format(MESSAGE_COMMAND_HELP_PARAMETERS, COMMAND_EDIT_PARAMETER) + LS
+                + String.format(MESSAGE_COMMAND_HELP_EXAMPLE, COMMAND_EDIT_EXAMPLE) + LS;
     }
 
     /** Returns string for showing 'clear' command usage instruction */
